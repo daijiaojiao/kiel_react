@@ -1,15 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import RouterPage from './router.js';
+// import { Provider } from 'react-redux'
+// import store from './redux/store';
 import './index.css';
-import App from './App';
+import 'antd/dist/antd.css';
 import * as serviceWorker from './serviceWorker';
+// import addTodo from './redux/action.js';
+
+// store.dispatch(addTodo('learn more'))
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <Provider store={store}>
+    <RouterPage/>
+  // </Provider>
+  ,
   document.getElementById('root')
-);
+)
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//     element,
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
