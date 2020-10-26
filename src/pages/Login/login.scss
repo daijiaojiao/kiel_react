@@ -1,3 +1,38 @@
 .login{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     background-image: url('../../assets/img/login_bg.png');
+    .top{
+        padding: 25px 8px 0 39px;
+        color: white;
+        img{
+            vertical-align: bottom;
+        }
+        .inline-bk{
+            padding: 0 30px;
+        }
+        .title{
+            font-weight: bold;
+            font-size: 20px;
+            border-left: 1px solid white;
+            vertical-align: super;
+        }
+    }
+    .login-form{
+        width: 400px;
+        height: 400px;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        transform: translate(30%,-50%);
+        left: 50%;;
+        border-radius: 10px;
+        padding: 0 20px;
+        .form-tit{
+            margin: 30px 0 24px;
+            font-weight: 600;
+        }
+    }
 }

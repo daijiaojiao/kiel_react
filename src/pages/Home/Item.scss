@@ -1,0 +1,62 @@
+.flex-bd{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+.flex-bd .flex-item{
+    margin: 0 43px 65px 0;
+    width: 220px;
+}
+.ip-flex{
+    .ip-img-bd{
+        height: 220px;
+        width: 220px;
+        position: relative;
+        border: 1px solid #ccc;
+        img{
+            max-width: 220px;
+            max-height: 220px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+    }
+    .ip-type{
+        border: 1px solid #005ED8;
+        border-radius: 10px;
+        color: #005ED8;
+        display: inline-block;
+        margin: 8px 0;
+        padding: 1px 10px 1px;
+        font-size: 12px;
+    }
+    
+}
+.book-flex .flex-item{
+    color: #333;
+    img{
+        height: 270px;
+        width: 220px;
+    }
+    .book-name{
+        height: 54px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    
+}
+.chip-flex .flex-item{
+    img{
+        height: 220px;
+    }
+    .chip-name{
+        height: 54px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+.flex-bd .flex-item.flex-item-right{
+    margin-right: 0;
+}
