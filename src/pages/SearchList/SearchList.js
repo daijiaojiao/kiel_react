@@ -1,7 +1,7 @@
 import React from 'react';
-import { Pagination } from 'antd';
 import http from '../../server';
 import ChipItem from '../Home/ChipItem';
+import IpItem from './IpItem/IpItem';
 import LeftChoose from './LeftChoose/LeftChoose';
 import PaginationCom from '../../components/PaginationCom/PaginationCom';
 import '../Home/Item.scss';
@@ -24,23 +24,30 @@ function SearchListHoc(ComponentsClass){
     }
 }
 
-class ComponentsClass extends React.Component{
-    constructor(props){
-        super(props)
-    }
-    
-    render(){
-        return (
-            <div className="search-content">
-                {
-                    this.props.list.length>0 ?(<ChipItem doc={this.props.list} showCount={4}/>):(<div>没有找到您想要的宝贝</div>)
-                }
+function ComponentsClass(props){
+    if(props.list.length>0){
+        if(props.mcid==='2'){
+            return(
+                <div className="search-content">
+                    <IpItem list={props.list}/>
+                </div>
                 
-            </div>
+            )
+        }else{
+            return (
+                <div className="search-content">
+                    <ChipItem doc={props.list} showCount={4}/>
+                </div>
+                
+            )
+        }
+        
+    }else{
+        return (
+            <div className="search-content data-none">没有找到您想要的宝贝</div>
         )
     }
 }
-
 
 const SearchListHocCom = SearchListHoc(ComponentsClass)
 
@@ -49,7 +56,7 @@ class SearchList extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            // mcid: this.props.match.params.mcid,
+            mcid: this.props.match.params.mcid,
             list:[],
             page:{
                 pageNum: 1, 
@@ -67,22 +74,46 @@ class SearchList extends React.Component{
                 ip_open_cate:[],
                 ip_technics:[],
             },
+            extTypeMapBook:{
+                common_type: ["book"],
+                file_format: [],
+                ic_flow: [],
+                ic_semi_type: [],
+                ic_type: [],
+                lang: [],
+            },
             check:[]
         }
         this.getSearchList.bind(this);
     }
-    componentDidMount(){
+    componentDidMount(){console.log(this.state.page)
         this.getSearchList(this.state.page);
 
     }
     componentWillReceiveProps(newProps){
-        console.log(newProps.match.params.mcid!==this.state.mcid)
         if(newProps.match.params.mcid!==this.state.mcid){
-            this.setState({
+            let newData = {
                 mcid:newProps.match.params.mcid,
+                page:{
+                    ...this.state.page,
+                    pageSize: 20,
+                    total: 0,
+                    pageNum: 1
+                },
+                cid:'',
+                extTypeMap:{
+                    ip_type:[],
+                    ip_com_cate:[],
+                    ip_foundry:[],
+                    ip_open_cate:[],
+                    ip_technics:[],
+                },
                 list:[]
+            }
+            this.setState({
+                ...newData
                 },()=>{
-                    this.getSearchList({...this.state.page,mcid: this.props.match.params.mcid})
+                    this.getSearchList({...newData})
             })
         }
     }
@@ -97,8 +128,8 @@ class SearchList extends React.Component{
                 cid:''
             }
         })
-        
-        this.getSearchList(this.state.page);
+        console.log(extData)
+        this.getSearchList({extTypeMap:{...extData},...this.state.page});
         
     }
     onSelect = (selectedKeys)=>{
@@ -130,7 +161,6 @@ class SearchList extends React.Component{
         this.setState({
             page: newPage
         })
-        console.log(122)
         this.getSearchList(newPage)
     }
     onPageNumChange = (pageNum)=>{

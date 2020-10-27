@@ -43,15 +43,31 @@ function LeftChooseIP(props){
         ip_open_cate: '开源类别',
         ip_technics:'工艺'
     }
-    function onChange(extType,checkedValues){
-        // console.log(checkedValues,item)
+    function canShowOption(item){console.log(item);console.log(props.extTypeMap)
+        if(props.extTypeMap['ip_type'].includes('com')&&item==='ip_com_cate'){console.log(1)
+            return true;
+        }
+        if(props.extTypeMap['ip_type'].includes('open')&&item==='ip_open_cate'){console.log(2)
+            return true;
+        }
+        if(item!=='ip_open_cate'&&item!=='ip_com_cate'){console.log(3)
+            return true;
+        }
+        return false;
     }
     return(
         <div className="left-choose">
             {Object.keys(ext).map((item,index)=>
                 <React.Fragment key={item}>
-                    <div className="choose-title">{extTitle[item]}</div>
-                    <Checkbox.Group options={ext[item]}  onChange={props.onChange.bind(this,item)} />
+                    {canShowOption(item)?
+                        (
+                            <>
+                                <div className="choose-title">{extTitle[item]}</div>
+                                <Checkbox.Group options={ext[item]}  onChange={props.onChange.bind(this,item)} />
+                            </>
+                        ):
+                        ''
+                    }
                 </React.Fragment>
             )}
         </div>

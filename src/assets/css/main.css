@@ -49,3 +49,12 @@ a:hover{
     width: 1280px;
     margin: 20px auto;
 }
+.tit-1{
+    font-size: 18px;
+    font-weight: bold;
+}
+.tit-blue-1{
+    font-size: 20px;
+    font-weight: bold;
+    color: #005ED8;
+}

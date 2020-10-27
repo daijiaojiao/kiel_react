@@ -15,7 +15,12 @@
         }
     }
 }
-.search-content{
+.search-content
+{
     display: inline-block;
     width: calc(100% - 260px);
+}
+.data-none{
+    text-align: center;
+    margin-top: calc(50vh - 120px);
 }
