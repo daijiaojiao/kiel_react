@@ -1,6 +1,6 @@
 import store from './store/index';
 
-export function getConfigVal (type, key ){
+export  function getConfigVal (type, key ){
     let configMap = store.getState().config;
     let config = {};
     for(let key in configMap){
@@ -19,7 +19,12 @@ export function getConfigVal (type, key ){
     }
 }
 
+
+
+
 export default function getDefaultImg(type, e){
     e.target.src = require('./assets/img/'+type+'.png');
 }
+
+
 

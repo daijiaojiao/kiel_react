@@ -1,5 +1,5 @@
 import React from 'react';
-import { getConfigVal } from '../../common.js';
+import  {getConfigVal}  from '../../common.js';
 import { Link } from 'react-router-dom';
 
 function IpItem(props){

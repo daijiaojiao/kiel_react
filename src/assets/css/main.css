@@ -2,7 +2,7 @@
     margin:0; padding:0; 
     box-sizing: border-box;
 }
-body{ font:16px, arial, #333; font-size: 16px;}
+body{ font:16px, arial, #333; font-size: 16px;font-family: PingFang SC,Helvetica Neue,Helvetica,microsoft yahei,arial,STHeiTi,sans-serif;}
 h1, h2, h3, h4, h5, h6{ font-size:100%; }
 ul, ol { list-style:none; }
 a { text-decoration:none; }
@@ -18,6 +18,9 @@ table { border-collapse:collapse; border-spacing:0; }
 }
 .t-right{
     text-align: right;
+}
+.t-center{
+    text-align: center;
 }
 .clear-f::after{
     content: "";

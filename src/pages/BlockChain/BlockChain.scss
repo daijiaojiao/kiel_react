@@ -1,0 +1,37 @@
+.blockchain-top{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 36px 150px;
+    background-image: url('../../assets/img/block_bg.png');
+    color: white;
+    .top-1{
+        // width: 900px;
+        // margin: 0 auto;
+        line-height: 19px;
+    }
+    .font-big{
+        font-size: 28px;
+        // font-weight: bold;
+    }
+    .block-hash{
+        margin: 12px 0;
+    }
+}
+.blockchain-table{
+    width: 1200px;
+    margin: 20px auto;
+    .block-title{
+        font-size: 20px;
+        margin: 16px 0;
+        img{
+            margin-right: 10px;
+        }
+    }
+    .odd-column{
+        background-color: #eff1ff;
+    }
+}
+.detail-hash{
+    width: 200px;
+    word-break: break-all;
+}

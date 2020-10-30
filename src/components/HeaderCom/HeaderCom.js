@@ -97,8 +97,11 @@ function HeaderCom (props){
                 <ul className="inline-bk items-after">
                     <UserHeaderCom user={user} />
                     <li>
-                        <div >Kilbychain</div>
-                        <div>explorer</div>
+                        <Link to="/blockChain">
+                            <div >Kilbychain</div>
+                            <div className="t-center">explorer</div>
+                        </Link>
+                        
                     </li>
                 </ul>
             </div>
