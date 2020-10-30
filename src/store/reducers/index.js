@@ -3,7 +3,8 @@ import action_types from '../actions/action-types';
 let initState = {
     config: {},
     category:{},
-    user:{}
+    user:{},
+    searchText: ''
 }
 
 function reducer(state = initState, action){
@@ -20,6 +21,12 @@ function reducer(state = initState, action){
             newState = {
                 ...state,
                 user: action.payload
+            }
+            break;
+        case action_types.set_searchText:
+            newState = {
+                ...state,
+                searchText: action.payload
             }
             break;
         default:

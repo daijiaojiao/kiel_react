@@ -53,15 +53,8 @@ function UserHeaderCom(props){
 }
 
 function HeaderCom (props){
-    const selectBefore = (
-        <Select defaultValue={props.mcid} className="select-before">
-          <Option value="2">知识产权</Option>
-          <Option value="1">专业资料</Option>
-          <Option value="3">成品芯片</Option>
-          <Option value="4">项目研发</Option>
-        </Select>
-    );
     const {user} = store.getState();
+   
     return(
         <div className="HeaderCom">
             <div className="HeaderComContent">
@@ -86,19 +79,23 @@ function HeaderCom (props){
                         <NavLink to="/searchList/3" activeClassName="active">成品芯片</NavLink>
                     </li>
                     <li >
-                        <NavLink to="/searchList/4" activeClassName="active">项目研发</NavLink>
+                        <NavLink to="/searchTask" activeClassName="active">项目研发</NavLink>
                     </li>
                 </ul>
-                <Input addonBefore={selectBefore} addonAfter={<SearchOutlined />} className="search-input" value={props.searchText}/>
+                
+                <Input.Group compact className="search-input ">
+                    <Select defaultValue={props.mcid} className="select-before" onChange={props.handleSelectType}>
+                        <Option value="2">知识产权</Option>
+                        <Option value="1">专业资料</Option>
+                        <Option value="3">成品芯片</Option>
+                        <Option value="4">项目研发</Option>
+                    </Select>
+                    <Link to={props.mcid==='4'?'/searchTask':('/searchList/'+props.mcid)}>
+                        <Input.Search style={{ width: '200px' }} defaultValue="" onSearch={props.handleSearch}/>
+                    </Link>
+                </Input.Group>
                 <ul className="inline-bk items-after">
                     <UserHeaderCom user={user} />
-                    {/* <li>
-                        <NavLink to="/login" activeClassName="active">登录</NavLink>
-                        <span></span>
-                    </li>
-                    <li>
-                        <span>注册</span>
-                    </li> */}
                     <li>
                         <div >Kilbychain</div>
                         <div>explorer</div>

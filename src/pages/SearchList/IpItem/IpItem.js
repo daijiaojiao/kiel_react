@@ -4,11 +4,7 @@ import './IpItem.scss';
 import {getConfigVal} from '../../../common';
 
 function IpItem(props){
-    console.log(props.list)
     const imgPre = getConfigVal('system','imgPath');
-    const unit = getConfigVal('unit_name',1);
-    console.log(unit)
-    console.log(imgPre)
     return(
         <React.Fragment>
             {

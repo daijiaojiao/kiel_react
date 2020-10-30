@@ -52,6 +52,12 @@
     width: 300px;
     vertical-align: text-bottom;
     margin-left: 60px;
+    .select-before{
+        width: 100px;
+    }
+}
+.ant-input-group.ant-input-group-compact{
+    display: inline-block;
 }
 .items-after{
     vertical-align: middle;

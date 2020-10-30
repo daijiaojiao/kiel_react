@@ -4,8 +4,12 @@ import ChipItem from '../Home/ChipItem';
 import IpItem from './IpItem/IpItem';
 import LeftChoose from './LeftChoose/LeftChoose';
 import PaginationCom from '../../components/PaginationCom/PaginationCom';
+import store from '../../store/index';
+import emitter from '../../util/events';
 import '../Home/Item.scss';
 import './SearchList.scss';
+// import history from '../../util/history'
+
 
 function SearchListHoc(ComponentsClass){
     return class HOC extends React.Component{
@@ -16,7 +20,6 @@ function SearchListHoc(ComponentsClass){
             }
         }
         componentDidMount(){
-            
         }
         render(){
             return <ComponentsClass  {...this.props} getSearchList={this.getSearchList}/>
@@ -64,7 +67,7 @@ class SearchList extends React.Component{
                 total:0,
                 mcid:this.props.match.params.mcid,
                 cid:'',
-                searchText: ''
+                searchText: store.getState().searchText
             },
             extTypeMap:{
                 // common_type:[],
@@ -86,11 +89,44 @@ class SearchList extends React.Component{
         }
         this.getSearchList.bind(this);
     }
-    componentDidMount(){console.log(this.state.page)
-        this.getSearchList(this.state.page);
-
+    componentDidMount(){
+        // 监听点击heander 搜索icon事件
+        
+        let params ;
+        console.log(store.getState())
+        if(this.props.match.params.mcid==='1'){
+            params = {
+                ...this.state.page,
+                extTypeMap: this.state.extTypeMapBook
+            }
+        }else{
+            params = {
+                ...this.state.page,
+                extTypeMap: this.state.extTypeMap
+            }
+        }
+        this.setState({
+            extTypeMap: params.extTypeMap
+        })
+        this.searchTextEmitter = emitter.on('searchList',(searchText)=>{
+            console.log(searchText)
+            let newPageData = {
+                ...this.state.page,searchText
+            }
+            this.setState({
+                page:newPageData
+            })
+            this.getSearchList({...params,searchText})
+        })
+        this.getSearchList(params);
+        console.log(this.searchTextEmitter);
+        console.log(typeof(this.searchTextEmitter));
+    }
+    componentWillUnmount(){
+        // emitter.removeListener('searchList');
     }
     componentWillReceiveProps(newProps){
+        console.log(newProps)
         if(newProps.match.params.mcid!==this.state.mcid){
             let newData = {
                 mcid:newProps.match.params.mcid,
@@ -101,14 +137,23 @@ class SearchList extends React.Component{
                     pageNum: 1
                 },
                 cid:'',
-                extTypeMap:{
+                extTypeMap:newProps.match.params.mcid==='1'?{
+                    common_type: ["book"],
+                    file_format: [],
+                    ic_flow: [],
+                    ic_semi_type: [],
+                    ic_type: [],
+                    lang: [],
+                }:{
                     ip_type:[],
                     ip_com_cate:[],
                     ip_foundry:[],
                     ip_open_cate:[],
                     ip_technics:[],
+                    
                 },
-                list:[]
+                list:[],
+                searchText: store.getState().searchText
             }
             this.setState({
                 ...newData
@@ -128,8 +173,7 @@ class SearchList extends React.Component{
                 cid:''
             }
         })
-        console.log(extData)
-        this.getSearchList({extTypeMap:{...extData},...this.state.page});
+        this.getSearchList({...this.state.page,extTypeMap:{...extData}});
         
     }
     onSelect = (selectedKeys)=>{

@@ -12,6 +12,12 @@ let actions = {
             type: action_types.set_user,
             payload
         }
+    },
+    setSearchText: function(payload){
+        return {
+            type: action_types.set_searchText,
+            payload
+        }
     }
 }
 

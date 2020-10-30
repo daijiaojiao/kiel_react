@@ -1,0 +1,38 @@
+.task-item{
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 4px;
+    &:hover{
+        border-color: #005ed8;
+    }
+    .tit-1:hover{
+        color: #005ed8;
+    }
+    .item-middle{
+        margin: 10px 0 8px;
+        display: grid;
+        grid-template-columns: calc(100% - 160px ) 160px;
+        .t-right{
+            height: 42px;
+            
+            color: #005ed8;
+            font: {
+                size: 22px;
+                weight: bold;
+            }
+        }
+    }
+    .bottom .inline-bk span:first-child{
+        margin-right: 12px;
+        
+    }
+    .bottom .inline-bk span:last-child{
+        padding-left: 12px;
+        border-left: 1px solid #ddd;
+    }
+}
+.font-gray{
+    color: #ccc;
+    font-size: 16px;
+}

@@ -15,7 +15,7 @@ function Suggestion(props){
         let suggestions = getConfigVal('home','suggestion'+props.item).split(',');
         if(props.item===3){
             suggestions = [];
-            let {category} = store.getState();console.log(category)
+            let {category} = store.getState();
             for(let c of category['0']){
                 suggestions.push(c.name)
             }

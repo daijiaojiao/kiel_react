@@ -58,3 +58,7 @@ a:hover{
     font-weight: bold;
     color: #005ED8;
 }
+.pagination{
+    text-align: right;
+    margin-top: 20px;
+}

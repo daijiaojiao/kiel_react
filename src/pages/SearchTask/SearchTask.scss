@@ -1,0 +1,18 @@
+.task{
+    width: 1280px;
+    margin: 20px auto;
+    &-content{
+        display: grid;
+        grid-template-columns: 265px calc(100% - 265px);
+        .progress{
+            padding-right: 10px;
+            h1{
+                font: {
+                    size: 16px;
+                    weight:bold;
+                }
+            }
+        }
+    }
+    
+}
